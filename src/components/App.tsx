@@ -19,6 +19,8 @@ import { getCurrentTheme } from "../selectors/getCurrentTheme";
 import { string } from "prop-types";
 import Button from '@material-ui/core/Button';
 import GpsFixedIcon from '@material-ui/icons/GpsFixed';
+import MouseRender from  "./MouseRender"
+import { Container } from '@material-ui/core';
 
 const mapState = (state: ReduxState) => ({
   bookmarkTree: getBookmarkTree(state),
@@ -46,20 +48,28 @@ export const App: FC = () => {
   return (
     <ThemeProvider theme={currentTheme}>
       <Root>
-        <Button
+      <Main>
+          <Container>
+
+          <Button
             variant="contained"
             color="default"
             startIcon={<GpsFixedIcon />}
         >
             inspect elements
         </Button>
+      <MouseRender />
+              </Container>
+      
+            {/* <FolderList bookmarkTree={bookmarkTree} /> */}
+     </Main>
+     
        
-        {!isBookmarkTreeEmpty && (
-          <Main>
-            <FolderList bookmarkTree={bookmarkTree} />
-          </Main>
+       
+        {/* {!isBookmarkTreeEmpty && (
+         
         )}
-        {isBookmarkTreeEmpty && <NoResult />}
+        {isBookmarkTreeEmpty && <NoResult />} */}
       </Root>
     </ThemeProvider>
   );
